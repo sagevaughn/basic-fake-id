@@ -1,0 +1,56 @@
+<!-- ui.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial;
+            overflow: hidden;
+        }
+
+        #card {
+            width: 350px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #222;
+            color: white;
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="card">
+    <h2>New York State License</h2>
+
+    <p>Name: <span id="name"></span></p>
+    <p>DOB: <span id="dob"></span></p>
+    <p>Job: <span id="occupation"></span></p>
+    <p>ID: <span id="citizenid"></span></p>
+</div>
+
+<script>
+window.addEventListener("message", function(event) {
+
+    if (event.data.action === "open") {
+
+        document.getElementById("card").style.display = "block";
+
+        document.getElementById("name").innerText = event.data.name;
+        document.getElementById("dob").innerText = event.data.dob;
+        document.getElementById("occupation").innerText = event.data.occupation;
+        document.getElementById("citizenid").innerText = event.data.citizenid;
+
+        setTimeout(() => {
+            document.getElementById("card").style.display = "none";
+        }, 5000)
+    }
+});
+</script>
+
+</body>
+</html>
